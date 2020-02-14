@@ -10,8 +10,10 @@ myFunc('myString');
 */ 
 
 /*------------------------------ Solución ------------------------------------------- */
-
-
+function myString(strg){
+    console.log(strg.length);
+  }
+  myString("we are the best");
 
 /*----------------------------------------------------------------------------------- */
 
@@ -33,11 +35,18 @@ b) el número ahora es un entero con valor de (valor) ;)
 
 /*------------------------------ Solución ------------------------------------------- */
 
+function entero(numero){
+    if(Number.isInteger(numero)){
+        console.log(numero," Es un numero");
+    }else{
+        console.log("El numero ahora es entero con valor de ",parseInt(numero));
+    }
+}
 
+entero(9);
+entero("9");
 
 /*----------------------------------------------------------------------------------- */
-
-
 
 /*---------- Boolean ----------*/
 /*
@@ -51,7 +60,11 @@ expected result:  4 caracteres.
 */
 
 /*------------------------------ Solución ------------------------------------------- */
+function booleanEx(value){
+    console.log(value.toString().length)
+}
 
+booleanEx("true");
 
 
 /*----------------------------------------------------------------------------------- */
@@ -70,8 +83,18 @@ myFunc(obj);
 */ 
 
 /*------------------------------ Solución ------------------------------------------- */
+let usuario = {
+    name: "Andrea",
+    email: "andrea@email.com",
+    password: "123"
+}
 
+function ObjectFun(object){
+console.log(Object.keys(usuario).length,Object.keys(usuario),
+Object.keys(usuario),Object.values(usuario));
+}
 
+ObjectFun(usuario)
 
 /*----------------------------------------------------------------------------------- */
 
@@ -91,7 +114,13 @@ result: 3.
 
 /*------------------------------ Solución ------------------------------------------- */
 
+var sum = new Function('a','b','c','return a + b + c');
 
+function FunctionLength(sum){
+    console.log(sum.length);
+}
+
+FunctionLength(sum);
 
 /*----------------------------------------------------------------------------------- */
 
@@ -113,9 +142,22 @@ myFunc(arr, 3, 'apple');
 */ 
 
 /*------------------------------ Solución ------------------------------------------- */
+var ArrayStrings = ["Hola","Mundo","!"];
 
+function ArrayDesire(array,desireL,template){
+    var dif = array.length - desireL;
+    if(dif === 1){
+        array.push(template);
+        return array
+    }else if(dif > 1){
+        return "El array es mayor por "+dif;
+    }else{
+        return "El array es menor por "+Math.abs(dif);
+    }
 
+}
 
+console.log(ArrayDesire(ArrayStrings,4,"juan"));
 /*----------------------------------------------------------------------------------- */
 
 
@@ -129,9 +171,11 @@ myFunc();
 */
 
 /*------------------------------ Solución ------------------------------------------- */
+function myFunc(){
+    console.log(new Date()," ",Date.now());
+}
 
-
-
+myFunc();
 /*----------------------------------------------------------------------------------- */
 
 
@@ -149,8 +193,11 @@ result = 9;
 */
 
 /*------------------------------ Solución ------------------------------------------- */
+function MathFunc(b,e){
+    console.log(Math.pow(Math.abs(b),e));
+}
 
-
+MathFunc(-3,2);
 
 /*----------------------------------------------------------------------------------- */
 
@@ -169,8 +216,18 @@ myFunc(str, template)
 */
 
 /*------------------------------ Solución ------------------------------------------- */
+function RegExpFun(str,template){
+    var r = new RegExp(/([A-Z])/);
+    if(r.test(str)){
+        var m = str.replace(r,template);
+        console.log(m);
+        return;
+    }else{
+        console.log("No encuentro coincidencias")
+    }
+}
 
-
+RegExpFun("Mola","N")
 
 /*----------------------------------------------------------------------------------- */
 
@@ -186,8 +243,16 @@ Ex: myFunc(number)
 */
 
 /*------------------------------ Solución ------------------------------------------- */
+function MyError(n){
+if(n<=10){
+    console.log("Valor dentro de los parametros")
+    return;
+}
+    throw new Error("El valor esta fuera de los parametros")
 
+}
 
+MyError(11);
 
 /*----------------------------------------------------------------------------------- */
 
@@ -199,7 +264,50 @@ entre los proyectos finales que tienen asignados.
 
 Describir el caso:
 
+Quiero guardar las preferencias de viajes del usuario en una propiedad
+suya que se llame Favoritos. Asi que pensaba en realizar mi
+objeto Usuario, con las propiedades con las que iniciaria sesion
+y su lista de objetos de tipo Hotel.
+
+Y despues quiero imprimir sus favoritos en su lista de favoritos
+
 Mostrar la solucíon en código:
 
+let Usuario = {
+  id: "1",
+  nombre: "Andrea",
+  correo: "andrea@hotmail.com",
+  favoritos: [
+    {
+      id: 1,
+      name: "Hotel Casa Blanca",
+      city: "Guadalajara",
+      state: "Jalisco",
+      puntuacion: "5"
+    },
+    {
+      id: 5,
+      name: "Hotel Bugambilias",
+      city: "Guadalajara",
+      state: "Jalisco",
+      puntuacion: "5"
+    }
+  ]
+};
+
+function desplegar(array) {
+  var lista = document.getElementById("app");
+  var h1 = document.createElement("h1");
+  h1.innerHTML = "Tus favoritos: "+array.favoritos.length; 
+  lista.appendChild(h1)
+  array.favoritos.forEach(function (data,i){
+    var linenew = document.createElement("li");
+    var contenido = document.createTextNode(data.name + "  " +data.puntuacion + " estrellas");
+    lista.appendChild(linenew);
+    linenew.appendChild(contenido);
+  })
+}
+
+desplegar(Usuario);
 
 */
